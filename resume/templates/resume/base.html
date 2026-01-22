@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Syed Ali Azhar | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python & Django Backend Developer Portfolio">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <!-- Left: Logo -->
+    <div class="nav-left">
+        <div class="logo">SAA.DEV</div>
+    </div>
+
+    <!-- Center: Nav Links (Desktop Only) -->
+    <div class="nav-center">
+        <div class="nav-icons">
+            <a href="{% url 'home' %}" class="nav-item" title="Home">
+                <img src="{% static 'icons/home.jpg' %}" alt="Home">
+            </a>
+            <a href="{% url 'about' %}" class="nav-item" title="About">
+                <img src="{% static 'icons/about.jpg' %}" alt="About">
+            </a>
+            <a href="{% url 'projects' %}" class="nav-item" title="Projects">
+                <img src="{% static 'icons/projects.jpg' %}" alt="Projects">
+            </a>
+            <a href="{% url 'tools' %}" class="nav-item" title="Tools">
+                <img src="{% static 'icons/tools.jpg' %}" alt="Tools">
+            </a>
+            <a href="{% url 'contact' %}" class="nav-item" title="Contact">
+                <img src="{% static 'icons/contact.jpg' %}" alt="Contact">
+            </a>
+        </div>
+    </div>
+
+    <!-- Right: Theme Toggle & Search -->
+    <div class="nav-right">
+        <!-- Theme Toggle -->
+        <div class="checkbox-wrapper-35">
+            <input value="private" name="switch" id="switch" type="checkbox" class="switch">
+            <label for="switch">
+                <span class="switch-x-text"> </span>
+                <span class="switch-x-toggletext">
+                    <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Night</span>
+                    <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Day</span>
+                </span>
+            </label>
+        </div>
+
+        <!-- Search Box (Desktop Only) - With Wrapper for Results -->
+        <div class="search-box-wrapper">
+            <input type="text" class="search-box" placeholder="Search...">
+            <!-- Search results will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Hamburger Menu (Mobile/Tablet Only) -->
+        <div class="hamburger-menu" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE NAVIGATION (Hidden by default) -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="{% url 'home' %}" class="nav-item" title="Home">
+        <img src="{% static 'icons/home.jpg' %}" alt="Home">
+        <span>Home</span>
+    </a>
+    <a href="{% url 'about' %}" class="nav-item" title="About">
+        <img src="{% static 'icons/about.jpg' %}" alt="About">
+        <span>About</span>
+    </a>
+    <a href="{% url 'projects' %}" class="nav-item" title="Projects">
+        <img src="{% static 'icons/projects.jpg' %}" alt="Projects">
+        <span>Projects</span>
+    </a>
+    <a href="{% url 'tools' %}" class="nav-item" title="Tools">
+        <img src="{% static 'icons/tools.jpg' %}" alt="Tools">
+        <span>Tools</span>
+    </a>
+    <a href="{% url 'contact' %}" class="nav-item" title="Contact">
+        <img src="{% static 'icons/contact.jpg' %}" alt="Contact">
+        <span>Contact</span>
+    </a>
+</div>
+
+<!-- PAGE CONTENT -->
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>&copy; 2026 Syed Ali Azhar. All rights reserved.</p>
+    <p>Fullstack Engineer | Python & Django Developer</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

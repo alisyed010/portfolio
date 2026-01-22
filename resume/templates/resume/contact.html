@@ -1,0 +1,60 @@
+{% extends 'resume/base.html' %}
+{% block content %}
+
+<section class="contact-section">
+
+    <!-- HEADER -->
+    <div class="contact-header">
+        <h1>LET'S <span>WORK</span> TOGETHER</h1>
+        <p>Available for freelance and full-time opportunities.</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="contact-card">
+        
+        <!-- Success/Error Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>FULL NAME</label>
+                    <input type="text" name="name" placeholder="Syed Ali Azhar" required>
+                </div>
+
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" name="sender_email" placeholder="alisyed@example.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>PROJECT BUDGET / ROLE</label>
+                <select name="role" required>
+                    <option value="" selected disabled>Select Option...</option>
+                    <option value="Full-time Position">Full-time Position</option>
+                    <option value="Freelance Project">Freelance Project</option>
+                    <option value="Collaboration">Collaboration</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>MESSAGE</label>
+                <textarea name="message" rows="5" placeholder="How can I help you build your next big idea?" required></textarea>
+            </div>
+
+            <button type="submit" class="contact-btn">Send Message</button>
+        </form>
+    </div>
+
+</section>
+
+{% endblock %}

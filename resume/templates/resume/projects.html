@@ -1,0 +1,79 @@
+{% extends 'resume/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="projects-showcase">
+
+    <!-- HEADER -->
+    <div class="projects-header">
+        <h1>Featured Projects</h1>
+        <p>Showcasing high-impact backend and full-stack solutions.</p>
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+            <img src="{% static 'images/weather.jpg' %}" alt="Weather App">
+
+            <h3>Django Weather App</h3>
+            <p>
+                A real-time weather application built using Django and OpenWeather API.
+                Features dynamic search, unit conversion, and live meteorological data.
+            </p>
+
+            <div class="project-tags">
+                <span>Django</span>
+                <span>API Integration</span>
+                <span>Tailwind</span>
+            </div>
+
+            <a href="https://alisyed-weatherapp-django.onrender.com/"
+               target="_blank"
+               class="project-btn">
+               Explore Project
+            </a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <img src="{% static 'images/email.jpg' %}" alt="Email Automation">
+
+            <h3>Email Automation System</h3>
+            <p>
+                Advanced SMTP/IMAP automation engine for scheduling, monitoring,
+                and auto-replying. Built with security and efficiency as core pillars.
+            </p>
+
+            <div class="project-tags">
+                <span>Python</span>
+                <span>SMTP</span>
+                <span>Celery</span>
+            </div>
+
+            <a href="#" class="project-btn">Explore Project</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+            <img src="{% static 'images/course.jpg' %}" alt="Course System">
+
+            <h3>Course Enrollment System</h3>
+            <p>
+                Full-scale educational platform handling enrollment, course
+                management, and admin dashboards with MySQL backend.
+            </p>
+
+            <div class="project-tags">
+                <span>Django</span>
+                <span>MySQL</span>
+                <span>DRF</span>
+            </div>
+
+            <a href="#" class="project-btn">Explore Project</a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
