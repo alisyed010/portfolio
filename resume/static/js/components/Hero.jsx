@@ -12,7 +12,7 @@ Every decision is intentional. Every abstraction justified.
 This is full stack engineering — done properly.`;
 
 const Hero = () => {
-    const title = "Software Engineer — Systems & Architecture";
+    const title = "Fullstack Engineer — Systems & Architecture";
     const lines = heroCopy.split('\n');
     const firstLine = lines[0];
     const remainingLines = lines.slice(1);

@@ -70,13 +70,14 @@ a {
     position: sticky;
     top: 0;
     z-index: 1000;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     padding: 14px 20px;
     background: var(--panel);
     border-bottom: 1px solid var(--border);
     transition: background-color 0.3s ease;
+    gap: 20px;
 }
 
 /* Left: Logo */
@@ -92,9 +93,9 @@ a {
 
 /* Center: Nav Links (Hidden on mobile) */
 .nav-center {
-    flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Nav Items */
@@ -103,6 +104,7 @@ a {
     align-items: center;
     gap: 8px;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 /* Nav Links */
@@ -268,6 +270,7 @@ body.light .mobile-nav a:hover img {
     opacity: 1;
 }
 
+
 /* ================= LIVE CLOCK STYLING ================= */
 .live-clock {
     display: flex !important;
@@ -282,6 +285,7 @@ body.light .mobile-nav a:hover img {
     height: auto !important;
     transition: all 0.3s ease !important;
     position: relative !important;
+    overflow: visible !important;
 }
 
 .live-clock:hover {
@@ -290,80 +294,44 @@ body.light .mobile-nav a:hover img {
 }
 
 /* Blinking Green Dot with Radiating Effect */
-
 .clock-dot {
     position: relative !important;
-    display: inline-flex !important;
-    width: 8px !important;
-    height: 8px !important;
+    display: inline-block !important;
+    width: 10px !important;
+    height: 10px !important;
     border-radius: 50% !important;
     background-color: #00ff00 !important;
-    margin-right: 6px !important;
     flex-shrink: 0 !important;
-    animation: pulse-glow 2s ease-in-out infinite;
+    animation: greenBlink 1.5s ease-in-out infinite !important;
 }
 
-/* Inner glow */
-.clock-dot::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 255, 0, 0.6) 0%, transparent 70%);
-    animation: inner-pulse 2s ease-in-out infinite;
-}
-
-/* Outer radiating ring */
-.clock-dot::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: transparent;
-    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
-    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-}
-
-@keyframes pulse-glow {
-    0%, 100% {
-        box-shadow: 0 0 4px rgba(0, 255, 0, 0.8),
-                    0 0 8px rgba(0, 255, 0, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 8px rgba(0, 255, 0, 1),
-                    0 0 16px rgba(0, 255, 0, 0.7);
-    }
-}
-
-@keyframes inner-pulse {
-    0%, 100% {
-        opacity: 0.6;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.3);
-    }
-}
-
-@keyframes pulse-ring {
+/* Define the greenBlink animation */
+@keyframes greenBlink {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                    0 0 10px rgba(0, 255, 0, 0.5),
+                    0 0 15px rgba(0, 255, 0, 0.3);
+        opacity: 1;
     }
     50% {
-        box-shadow: 0 0 0 12px rgba(0, 255, 0, 0);
+        transform: scale(1.4);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 1),
+                    0 0 20px rgba(0, 255, 0, 0.8),
+                    0 0 30px rgba(0, 255, 0, 0.5),
+                    0 0 40px rgba(0, 255, 0, 0.3);
+        opacity: 0.7;
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                    0 0 10px rgba(0, 255, 0, 0.5),
+                    0 0 15px rgba(0, 255, 0, 0.3);
+        opacity: 1;
     }
 }
+
+/* Clock Time Styling */
 #clock-time {
     color: var(--accent) !important;
     font-size: 0.9rem !important;
@@ -387,6 +355,8 @@ body.light .live-clock:hover {
     background: rgba(255, 122, 24, 0.15) !important;
     border-color: rgba(255, 122, 24, 0.5) !important;
 }
+
+
 
 /* ================= SEARCH BOX STYLING ================= */
 .search-box {
@@ -979,6 +949,48 @@ body.light .about-card {
     color: var(--text-muted);
     font-size: 14px;
 }
+
+
+/* ===== Typewriter effect ===== */
+.typewriter {
+    min-height: 3.2em; /* prevents layout jump */
+    white-space: normal;
+}
+
+/* Cursor */
+.typewriter::after {
+    content: "|";
+    margin-left: 4px;
+    color: var(--accent);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Hidden lines initially */
+/* ===== Typewriter effect ===== */
+.typewriter {
+    min-height: 3.2em; /* prevents layout jump */
+    white-space: normal;
+}
+
+/* Cursor */
+.typewriter::after {
+    content: "|";
+    margin-left: 4px;
+    color: var(--accent);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+
+
 
 /* ================= PROJECTS ================= */
 .projects-showcase {

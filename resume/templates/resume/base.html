@@ -9,6 +9,45 @@
     <meta name="description" content="Python & Django Backend Developer Portfolio">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    
+    <!-- CLOCK DOT ANIMATION - INLINE TO ENSURE IT WORKS -->
+    <style>
+        .clock-dot {
+            position: relative !important;
+            display: inline-block !important;
+            width: 10px !important;
+            height: 10px !important;
+            border-radius: 50% !important;
+            background-color: #00ff00 !important;
+            flex-shrink: 0 !important;
+            animation: greenBlink 1.5s ease-in-out infinite !important;
+        }
+
+        @keyframes greenBlink {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                            0 0 10px rgba(0, 255, 0, 0.5),
+                            0 0 15px rgba(0, 255, 0, 0.3);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.4);
+                box-shadow: 0 0 10px rgba(0, 255, 0, 1),
+                            0 0 20px rgba(0, 255, 0, 0.8),
+                            0 0 30px rgba(0, 255, 0, 0.5),
+                            0 0 40px rgba(0, 255, 0, 0.3);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                            0 0 10px rgba(0, 255, 0, 0.5),
+                            0 0 15px rgba(0, 255, 0, 0.3);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -146,6 +185,36 @@
     </script>
     
     <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- TYPEWRITER EFFECT - OPTIMIZED INLINE SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var firstLine = document.querySelector('.about-card .about-line:first-of-type');
+                if (!firstLine) return;
+                
+                var fullText = firstLine.getAttribute('data-text');
+                if (!fullText) return;
+                
+                var charSpeed = 12;
+                var originalHTML = firstLine.innerHTML;
+                var index = 0;
+                
+                firstLine.innerHTML = '<span class="typing-text"></span>';
+                var typingSpan = firstLine.querySelector('.typing-text');
+                
+                function typeChar() {
+                    if (index < fullText.length) {
+                        typingSpan.textContent += fullText.charAt(index++);
+                        setTimeout(typeChar, charSpeed);
+                    } else {
+                        firstLine.innerHTML = originalHTML;
+                    }
+                }
+                typeChar();
+            }, 300);
+        });
+    </script>
 
 </body>
 
