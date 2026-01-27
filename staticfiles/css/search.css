@@ -1,0 +1,206 @@
+/* ================= SEARCH RESULTS DROPDOWN ================= */
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-top: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1001;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    min-width: 280px;
+}
+
+body.light .search-results {
+    background: var(--panel) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Search Result Item */
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: rgba(255, 122, 24, 0.1);
+    padding-left: 20px;
+}
+
+body.light .search-result-item:hover {
+    background: rgba(255, 122, 24, 0.08) !important;
+}
+
+/* Result Icon */
+.result-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255, 122, 24, 0.1);
+}
+
+body.light .result-icon {
+    background: rgba(255, 122, 24, 0.08) !important;
+}
+
+/* Result Content */
+.result-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.result-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result-title strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.result-category {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* No Results */
+.search-result-item.no-results {
+    cursor: default;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.search-result-item.no-results:hover {
+    background: transparent;
+    padding-left: 16px;
+}
+
+.search-result-item.no-results p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* View More Results */
+.search-result-item.view-more {
+    background: rgba(255, 122, 24, 0.08);
+    color: var(--accent);
+    font-weight: 600;
+    justify-content: center;
+    cursor: pointer;
+    border-bottom: none;
+}
+
+.search-result-item.view-more:hover {
+    background: rgba(255, 122, 24, 0.15);
+}
+
+body.light .search-result-item.view-more {
+    background: rgba(255, 122, 24, 0.06) !important;
+}
+
+body.light .search-result-item.view-more:hover {
+    background: rgba(255, 122, 24, 0.12) !important;
+}
+
+/* Scrollbar styling */
+.search-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background: rgba(255, 122, 24, 0.3);
+    border-radius: 3px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 122, 24, 0.5);
+}
+
+body.light .search-results::-webkit-scrollbar-thumb {
+    background: rgba(255, 122, 24, 0.2);
+}
+
+body.light .search-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 122, 24, 0.4);
+}
+
+/* Search Box Wrapper (for positioning) */
+.search-box-wrapper {
+    position: relative;
+}
+
+/* Responsive Search */
+@media (max-width: 900px) {
+    .search-results {
+        min-width: 240px;
+        max-height: 300px;
+    }
+
+    .result-title {
+        font-size: 0.9rem;
+    }
+
+    .result-category {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-results {
+        min-width: 200px;
+        max-height: 250px;
+        font-size: 0.9rem;
+    }
+
+    .search-result-item {
+        padding: 10px 12px;
+    }
+
+    .result-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 1.2rem;
+    }
+
+    .result-title {
+        font-size: 0.85rem;
+    }
+
+    .result-category {
+        font-size: 0.7rem;
+    }
+}
+
+/* ================= END SEARCH STYLES ================= */

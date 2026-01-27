@@ -1,0 +1,152 @@
+/* Hero Section Styling */
+.hero-section {
+    padding: 100px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.3;
+    color: var(--text);
+}
+
+.hero-copy {
+    max-width: 65ch; /* 60-65 characters per line constraint */
+    line-height: 2.1; /* Increased slightly on desktop per pro tip */
+    font-size: 1.1rem;
+}
+
+/* First line with typewriter effect */
+.first-line {
+    margin-bottom: 24px;
+    font-weight: 600;
+    color: var(--text);
+    min-height: 1.8em;
+}
+
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background-color: var(--accent);
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Highlight accent color - keywords */
+.highlight-accent {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Remaining copy lines */
+.remaining-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.remaining-copy p {
+    margin: 0;
+    color: var(--text);
+    word-break: break-word;
+    max-width: 65ch; /* Ensure 60-65 characters per line */
+}
+
+/* Ensure text wraps properly (60-65 chars per line on desktop) */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 80px 30px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-copy {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 60px 24px;
+        min-height: auto;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+        margin-bottom: 32px;
+    }
+
+    .hero-copy {
+        max-width: 100%;
+        font-size: 0.95rem;
+    }
+
+    .first-line {
+        margin-bottom: 20px;
+    }
+
+    .remaining-copy {
+        gap: 12px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 40px 16px;
+        min-height: auto;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+        margin-bottom: 24px;
+    }
+
+    .hero-copy {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .first-line {
+        margin-bottom: 16px;
+    }
+
+    .remaining-copy {
+        gap: 10px;
+    }
+
+    .cursor {
+        width: 1.5px;
+    }
+}
+
+/* Light mode adjustments */
+body.light .hero-section {
+    background: var(--bg);
+    color: var(--text);
+}
+
+body.light .highlight-accent {
+    color: var(--accent);
+}

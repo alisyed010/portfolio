@@ -35,6 +35,19 @@ body.light {
     font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+/* Prevent images from growing unexpectedly */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 body {
     background: var(--bg);
     color: var(--text);
@@ -89,10 +102,12 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: nowrap;
 }
 
 /* Nav Links */
 .nav-icons a {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,13 +132,18 @@ a {
 
 /* Nav Icons Images */
 .nav-icons img {
-    width: 22px;
-    height: 22px;
+    width: 22px !important;
+    height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
     object-fit: contain;
     display: block;
     filter: invert(1) brightness(1.8);
     opacity: 0.7;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .nav-icons a:hover img {
@@ -219,11 +239,18 @@ body.light .nav-icons a.active img {
 }
 
 .mobile-nav img {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    object-fit: contain;
+    display: block;
     filter: invert(1) brightness(1.8);
     opacity: 0.7;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 body.light .mobile-nav img {
@@ -239,6 +266,126 @@ body.light .mobile-nav img {
 body.light .mobile-nav a:hover img {
     filter: brightness(0.7) !important;
     opacity: 1;
+}
+
+/* ================= LIVE CLOCK STYLING ================= */
+.live-clock {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+    background: rgba(255, 122, 24, 0.2) !important;
+    border: 1px solid rgba(255, 122, 24, 0.4) !important;
+    border-radius: 8px !important;
+    min-width: 110px !important;
+    height: auto !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+}
+
+.live-clock:hover {
+    background: rgba(255, 122, 24, 0.3) !important;
+    border-color: rgba(255, 122, 24, 0.6) !important;
+}
+
+/* Blinking Green Dot with Radiating Effect */
+
+.clock-dot {
+    position: relative !important;
+    display: inline-flex !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background-color: #00ff00 !important;
+    margin-right: 6px !important;
+    flex-shrink: 0 !important;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Inner glow */
+.clock-dot::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.6) 0%, transparent 70%);
+    animation: inner-pulse 2s ease-in-out infinite;
+}
+
+/* Outer radiating ring */
+.clock-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+    animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 4px rgba(0, 255, 0, 0.8),
+                    0 0 8px rgba(0, 255, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 8px rgba(0, 255, 0, 1),
+                    0 0 16px rgba(0, 255, 0, 0.7);
+    }
+}
+
+@keyframes inner-pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(0, 255, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    }
+}
+#clock-time {
+    color: var(--accent) !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    font-family: 'Courier New', monospace !important;
+    letter-spacing: 1px !important;
+    min-width: 65px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Light Mode Clock */
+body.light .live-clock {
+    background: rgba(255, 122, 24, 0.1) !important;
+    border: 1px solid rgba(255, 122, 24, 0.3) !important;
+}
+
+body.light .live-clock:hover {
+    background: rgba(255, 122, 24, 0.15) !important;
+    border-color: rgba(255, 122, 24, 0.5) !important;
 }
 
 /* ================= SEARCH BOX STYLING ================= */
@@ -336,7 +483,7 @@ body.light .search-box:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-toggletext::before {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-toggletext::before {
     transform: translateX(54px);
     background: linear-gradient(135deg, #4a90e2, #7cb5ec);
 }
@@ -362,11 +509,11 @@ body.light .search-box:hover {
     opacity: 0;
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-unchecked {
     opacity: 0;
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-checked {
     opacity: 1;
 }
 
@@ -405,7 +552,7 @@ body.light .checkbox-wrapper-35 label:hover .switch-x-toggletext {
     gap: 60px;
     padding: 90px 120px;
     background:
-        radial-gradient(circle at right, rgba(255,122,24,0.15), transparent 60%),
+        radial-gradient(circle at right, rgba(255, 122, 24, 0.15), transparent 60%),
         linear-gradient(180deg, var(--bg), #111);
     transition: background-color 0.3s ease;
 }
@@ -413,7 +560,7 @@ body.light .checkbox-wrapper-35 label:hover .switch-x-toggletext {
 /* Light Mode Hero Background */
 body.light .hero {
     background:
-        radial-gradient(circle at right, rgba(255,122,24,0.08), transparent 60%),
+        radial-gradient(circle at right, rgba(255, 122, 24, 0.08), transparent 60%),
         linear-gradient(180deg, var(--bg), #e8e8e8) !important;
 }
 
@@ -433,11 +580,12 @@ body.light .hero {
 }
 
 .hero-name {
-    font-size: 3.8rem;
+    font-size: 4.5rem;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 10px;
     color: var(--text);
+    letter-spacing: -1px;
 }
 
 .hero-name span {
@@ -448,7 +596,8 @@ body.light .hero {
 }
 
 .hero-role {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
+    font-weight: 600;
     color: #9fb4c9;
     margin: 18px 0;
     transition: color 0.3s ease;
@@ -459,10 +608,121 @@ body.light .hero-role {
 }
 
 .hero-desc {
-    max-width: 600px;
+    max-width: 700px;
     color: var(--text-muted);
     margin-bottom: 36px;
-    line-height: 1.7;
+    line-height: 1.9;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.hero-desc strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.hero-desc br {
+    display: block;
+    margin: 8px 0;
+}
+
+.about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.about-link .arrow {
+    display: inline-block;
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.about-link:hover {
+    transform: translateX(6px);
+    text-shadow: 0 0 15px rgba(255, 122, 24, 0.6);
+}
+
+.about-link:hover .arrow {
+    transform: translateX(4px) translateY(-4px);
+    text-shadow: 0 0 20px rgba(255, 122, 24, 0.8);
+}
+
+.about-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.about-link:hover::after {
+    width: 100%;
+}
+
+/* Inline About Link for Hero Text */
+.inline-about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: inherit;
+    /* Inherit font size from parent */
+    margin-left: 10px;
+    text-decoration: none;
+    /* Remove default underline just in case */
+    position: relative;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.inline-about-link .arrow {
+    display: inline-block;
+    font-size: 1.2em;
+    /* Slightly larger than text */
+    transition: transform 0.3s ease;
+}
+
+.inline-about-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Adjust position */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Thinner underline for inline text */
+    background: var(--accent);
+    transform: scaleX(1);
+    /* Always visible as per user request? Or transition? User said "ADD AN UNDERLINE" */
+    transform-origin: left;
+    transition: transform 0.3s ease, height 0.3s ease;
+}
+
+.inline-about-link:hover {
+    color: #ff8c3a;
+    /* Slightly lighter accent */
+    text-shadow: 0 0 10px rgba(255, 122, 24, 0.4);
+}
+
+.inline-about-link:hover .arrow {
+    transform: translateX(4px);
+}
+
+.inline-about-link:hover::after {
+    height: 2px;
+    /* Thicken on hover */
+    box-shadow: 0 0 8px rgba(255, 122, 24, 0.6);
 }
 
 /* ================= 8. HERO BUTTONS ================= */
@@ -473,46 +733,75 @@ body.light .hero-role {
 }
 
 .btn {
-    padding: 14px 30px;
-    border-radius: 30px;
-    font-weight: 600;
-    font-size: 1rem;
+    padding: 15px 35px;
+    border-radius: 35px;
+    font-weight: 700;
+    font-size: 1.05rem;
     cursor: pointer;
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
     border: none;
     outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn.primary {
     background: var(--accent);
     color: #000;
+    box-shadow: 0 4px 15px rgba(255, 122, 24, 0.3);
 }
 
 .btn.primary:hover {
     background: #ff8c3a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 122, 24, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 122, 24, 0.5);
+}
+
+.btn.primary:active {
+    transform: translateY(-1px);
 }
 
 .btn.secondary {
     background: transparent;
-    border: 2px solid var(--border);
+    border: 2.5px solid var(--border);
     color: var(--text);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn.secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 122, 24, 0.15);
+    transition: left 0.3s ease;
+    z-index: -1;
 }
 
 .btn.secondary:hover {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 122, 24, 0.12);
     border-color: var(--accent);
     color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 122, 24, 0.25);
+}
+
+.btn.secondary:active {
+    transform: translateY(-1px);
 }
 
 /* Light Mode Buttons */
 body.light .btn.secondary {
-    border-color: rgba(0,0,0,0.2) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 body.light .btn.secondary:hover {
-    background: rgba(255,122,24,0.1) !important;
+    background: rgba(255, 122, 24, 0.1) !important;
 }
 
 /* ================= 9. PROFILE CARD ================= */
@@ -541,10 +830,13 @@ body.light .btn.secondary:hover {
 .profile-img {
     width: 90px;
     height: 90px;
+    max-width: 90px;
+    max-height: 90px;
     border-radius: 50%;
     border: 3px solid var(--accent);
     margin: 0 auto 14px;
     object-fit: cover;
+    display: block;
 }
 
 .profile-glass h3 {
@@ -569,11 +861,14 @@ body.light .btn.secondary:hover {
 .profile-links a {
     width: 35px;
     height: 35px;
+    max-width: 35px;
+    max-height: 35px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.06);
     display: grid;
     place-items: center;
     transition: all 0.25s ease;
+    flex-shrink: 0;
 }
 
 .profile-links a:hover {
@@ -1244,7 +1539,7 @@ body.light .alert-error {
         height: 24px;
     }
 
-    .checkbox-wrapper-35 .switch:checked + label .switch-x-toggletext::before {
+    .checkbox-wrapper-35 .switch:checked+label .switch-x-toggletext::before {
         transform: translateX(40px);
     }
 

@@ -2,8 +2,133 @@
 {% load static %}
 
 {% block content %}
-<section class="hero">
+<style>
+    /* Hero copy animation styles */
+    .hero-copy-new {
+        max-width: 65ch;
+        line-height: 2.1;
+        font-size: 1.1rem;
+        margin-bottom: 36px;
+    }
 
+    /* First line with typewriter effect */
+    .first-line {
+        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--text);
+        min-height: 1.8em;
+    }
+
+    /* Cursor animation */
+    .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background-color: var(--accent);
+        margin-left: 4px;
+        animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+
+        0%,
+        49% {
+            opacity: 1;
+        }
+
+        50%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    /* Highlight accent color - keywords */
+    .highlight-accent {
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    /* Remaining copy lines */
+    .remaining-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .remaining-copy p,
+    .hero-line {
+        margin: 0;
+        color: var(--text);
+        word-break: break-word;
+        max-width: 65ch;
+        line-height: 1.7;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+        .hero-copy-new {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-copy-new {
+            font-size: 0.95rem;
+            max-width: 100%;
+        }
+
+        .remaining-copy {
+            gap: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-copy-new {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .first-line {
+            margin-bottom: 12px;
+        }
+
+        .remaining-copy {
+            gap: 8px;
+        }
+
+        .cursor {
+            width: 1.5px;
+        }
+    }
+
+    /* Ensure profile links icons display correctly */
+    .profile-links svg {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
+        color: var(--text);
+        transition: color 0.25s ease;
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .profile-links a:hover svg {
+        color: #000;
+    }
+
+    body.light .profile-links svg {
+        color: var(--text);
+    }
+
+    body.light .profile-links a:hover svg {
+        color: #fff;
+    }
+</style>
+
+<section class="hero">
     <!-- LEFT -->
     <div class="hero-left">
         <p class="hero-intro">HELLO, I'M</p>
@@ -12,13 +137,24 @@
             Syed Ali <span>Azhar</span>
         </h1>
 
-        <h2 class="hero-role">Python & Django Developer</h2>
+        <h2 class="hero-role" id="hero-title">Software Engineer — Systems & Architecture</h2>
 
-        <p class="hero-desc">
-            I specialize in building scalable backend systems, robust REST APIs,
-            and performance-oriented web applications with a focus on clean
-            code and system design.
-        </p>
+        <!-- New hero copy with animations -->
+        <div class="hero-copy-new">
+            <!-- First line with typewriter effect -->
+            <p class="first-line" id="first-line"></p>
+
+            <!-- Remaining lines with staggered fade-in -->
+            <div class="remaining-copy" id="remaining-copy">
+                <p class="hero-line" data-line="1">AI can assist — but architecture still needs thinking.</p>
+                <p class="hero-line" data-line="2">I design full stack systems that are predictable under load,</p>
+                <p class="hero-line" data-line="3">APIs that are easy to extend, and interfaces built <span
+                        class="highlight-accent">from scratch</span>.</p>
+                <p class="hero-line" data-line="4">Every decision is intentional. Every abstraction justified.</p>
+                <p class="hero-line" data-line="5">This is full stack engineering — done properly  <a
+                        href="{% url 'about' %}" class="inline-about-link"><p><u>About Me  <span class="arrow"></span></a>&#11016</u></p>
+            </div>
+        </div>
 
         <div class="hero-actions">
             <a href="{% url 'projects' %}" class="btn primary">View Projects</a>
@@ -29,46 +165,145 @@
     </div>
 
     <!-- RIGHT -->
-<div class="hero-right">
-    <div class="profile-glass">
+    <div class="hero-right">
+        <div class="profile-glass">
+            <!-- PROFILE IMAGE -->
+            <img src="{% static 'images/profile.jpg'%}" alt="Syed Ali Azhar" class="profile-img">
 
-        <!-- PROFILE IMAGE -->
-        <img src="{% static 'images/profile.jpg'%}" alt="Syed Ali Azhar" class="profile-img">
-
-        <!-- NAME -->
+            <!-- NAME -->
             <h3>Backend Engineer</h3>
             <p>Focused on Django, REST APIs & Distributed Systems</p>
-<div class="profile-links">
 
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/syed-ali-514b44270/"
-       target="_blank"
-       class="icon-btn"
-       data-tooltip="LinkedIn">
+            <div class="profile-links">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/syed-ali-514b44270/" target="_blank" data-tooltip="LinkedIn"
+                    aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display: block;">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                </a>
 
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-
-    </a>
-
-    <!-- GitHub -->
-    <a href="https://github.com/alisyed010"
-       target="_blank"
-       class="icon-btn"
-       data-tooltip="GitHub">
-
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-
-    </a>
-
-</div>
-</div>
-
-    
-</div>
-
+                <!-- GitHub -->
+                <a href="https://github.com/alisyed010" target="_blank" data-tooltip="GitHub" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display: block;">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const highlightedWords = ["correctness", "scale", "clarity", "from scratch"];
+        const firstLineText = "I don't chase tools. I chase correctness, scale, and clarity.";
+        const firstLineEl = document.getElementById('first-line');
+        const heroTitle = document.getElementById('hero-title');
+        const remainingLines = document.querySelectorAll('.hero-line');
+
+        // Check if elements exist
+        if (!firstLineEl || !heroTitle) {
+            console.error('Hero elements not found');
+            return;
+        }
+
+        // Title animation (fade in + slide up)
+        if (heroTitle) {
+            heroTitle.style.opacity = '0';
+            heroTitle.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                heroTitle.style.transition = 'opacity 0.58s ease-out, transform 0.58s ease-out';
+                heroTitle.style.opacity = '1';
+                heroTitle.style.transform = 'translateY(0)';
+            }, 50);
+        }
+
+        // Typewriter effect for first line
+        let displayedText = '';
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < firstLineText.length) {
+                displayedText += firstLineText[charIndex];
+
+                // Render with highlights
+                let html = '';
+                const parts = displayedText.split(new RegExp(`(${highlightedWords.join('|')})`, 'gi'));
+                parts.forEach((part, index) => {
+                    if (highlightedWords.includes(part.toLowerCase())) {
+                        html += `<span class="highlight-accent">${part}</span>`;
+                    } else {
+                        html += part;
+                    }
+                });
+
+                firstLineEl.innerHTML = html + '<span class="cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 22);
+            } else {
+                firstLineEl.innerHTML = firstLineEl.innerHTML.replace('<span class="cursor">|</span>', '');
+
+                // Start remaining lines animation after typewriter completes
+                setTimeout(() => {
+                    animateRemainingLines();
+                }, 300);
+            }
+        }
+
+        // Animate remaining lines with stagger
+        function animateRemainingLines() {
+            if (remainingLines.length === 0) return;
+
+            remainingLines.forEach((line, index) => {
+                line.style.opacity = '0';
+                line.style.transform = 'translateY(15px)';
+
+                setTimeout(() => {
+                    line.style.transition = 'opacity 0.43s ease-out, transform 0.43s ease-out';
+                    line.style.opacity = '1';
+                    line.style.transform = 'translateY(0)';
+                }, index * 90); // 90ms stagger (reduced by 10%)
+            });
+        }
+
+        // Start typewriter effect
+        if (firstLineEl) {
+            setTimeout(typeWriter, 100);
+        }
+
+        // Intersection Observer for scroll-triggered animations (fallback)
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Already handled by setTimeout, but this ensures it works on scroll
+                    if (entry.target.classList.contains('remaining-copy')) {
+                        const lines = entry.target.querySelectorAll('.hero-line');
+                        lines.forEach((line, index) => {
+                            if (line.style.opacity === '0' || line.style.opacity === '') {
+                                setTimeout(() => {
+                                    line.style.transition = 'opacity 0.43s ease-out, transform 0.43s ease-out';
+                                    line.style.opacity = '1';
+                                    line.style.transform = 'translateY(0)';
+                                }, index * 90);
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const remainingCopyEl = document.getElementById('remaining-copy');
+        if (remainingCopyEl) {
+            observer.observe(remainingCopyEl);
+        }
+    });
+</script>
 {% endblock %}

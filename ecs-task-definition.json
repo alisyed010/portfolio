@@ -1,0 +1,62 @@
+{
+  "family": "portfolio-app",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "portfolio-web",
+      "image": "YOUR_ECR_REPO_URI:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [
+        {
+          "name": "DB_HOST",
+          "value": "your-rds-endpoint.region.rds.amazonaws.com"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "portfolio_db"
+        },
+        {
+          "name": "DB_USER",
+          "value": "portfolio_user"
+        },
+        {
+          "name": "DB_PASSWORD",
+          "value": "your-secure-password"
+        },
+        {
+          "name": "DB_PORT",
+          "value": "5432"
+        },
+        {
+          "name": "DEBUG",
+          "value": "False"
+        },
+        {
+          "name": "SECRET_KEY",
+          "value": "your-secret-key-here"
+        },
+        {
+          "name": "ALLOWED_HOSTS",
+          "value": "your-domain.com"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/portfolio-app",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
