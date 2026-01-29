@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-q^eymgf@apbabp+b&c5+#m15h-v_n#1iqk_zgcct=2cf2tx(=n')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 # Get allowed hosts from environment or use default
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '*').split(',')
@@ -156,4 +156,5 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
+    X_FRAME_OPTIONS = 'ALLOWALL'
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = None

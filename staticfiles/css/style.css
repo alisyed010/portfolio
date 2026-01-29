@@ -70,13 +70,14 @@ a {
     position: sticky;
     top: 0;
     z-index: 1000;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     padding: 14px 20px;
     background: var(--panel);
     border-bottom: 1px solid var(--border);
     transition: background-color 0.3s ease;
+    gap: 20px;
 }
 
 /* Left: Logo */
@@ -92,9 +93,9 @@ a {
 
 /* Center: Nav Links (Hidden on mobile) */
 .nav-center {
-    flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 /* Nav Items */
@@ -103,6 +104,7 @@ a {
     align-items: center;
     gap: 8px;
     flex-wrap: nowrap;
+    justify-content: center;
 }
 
 /* Nav Links */
@@ -268,6 +270,7 @@ body.light .mobile-nav a:hover img {
     opacity: 1;
 }
 
+
 /* ================= LIVE CLOCK STYLING ================= */
 .live-clock {
     display: flex !important;
@@ -282,6 +285,7 @@ body.light .mobile-nav a:hover img {
     height: auto !important;
     transition: all 0.3s ease !important;
     position: relative !important;
+    overflow: visible !important;
 }
 
 .live-clock:hover {
@@ -289,32 +293,45 @@ body.light .mobile-nav a:hover img {
     border-color: rgba(255, 122, 24, 0.6) !important;
 }
 
-/* Blinking Green Dot */
+/* Blinking Green Dot with Radiating Effect */
 .clock-dot {
     position: relative !important;
-    display: inline-flex !important;
-    width: 8px !important;
-    height: 8px !important;
+    display: inline-block !important;
+    width: 10px !important;
+    height: 10px !important;
     border-radius: 50% !important;
     background-color: #00ff00 !important;
-    margin-right: 6px !important;
-    animation: greenBlink 1.5s infinite !important;
     flex-shrink: 0 !important;
+    animation: greenBlink 1.5s ease-in-out infinite !important;
 }
 
+/* Define the greenBlink animation */
 @keyframes greenBlink {
-    0%, 50% {
-        opacity: 1 !important;
-        background-color: #00ff00 !important;
-        box-shadow: 0 0 8px #00ff00 !important;
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                    0 0 10px rgba(0, 255, 0, 0.5),
+                    0 0 15px rgba(0, 255, 0, 0.3);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.4);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 1),
+                    0 0 20px rgba(0, 255, 0, 0.8),
+                    0 0 30px rgba(0, 255, 0, 0.5),
+                    0 0 40px rgba(0, 255, 0, 0.3);
+        opacity: 0.7;
     }
     100% {
-        opacity: 0.3 !important;
-        background-color: #00ff00 !important;
-        box-shadow: 0 0 2px rgba(0, 255, 0, 0.3) !important;
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.8),
+                    0 0 10px rgba(0, 255, 0, 0.5),
+                    0 0 15px rgba(0, 255, 0, 0.3);
+        opacity: 1;
     }
 }
 
+/* Clock Time Styling */
 #clock-time {
     color: var(--accent) !important;
     font-size: 0.9rem !important;
@@ -338,6 +355,8 @@ body.light .live-clock:hover {
     background: rgba(255, 122, 24, 0.15) !important;
     border-color: rgba(255, 122, 24, 0.5) !important;
 }
+
+
 
 /* ================= SEARCH BOX STYLING ================= */
 .search-box {
@@ -434,7 +453,7 @@ body.light .search-box:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-toggletext::before {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-toggletext::before {
     transform: translateX(54px);
     background: linear-gradient(135deg, #4a90e2, #7cb5ec);
 }
@@ -460,11 +479,11 @@ body.light .search-box:hover {
     opacity: 0;
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-unchecked {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-unchecked {
     opacity: 0;
 }
 
-.checkbox-wrapper-35 .switch:checked + label .switch-x-checked {
+.checkbox-wrapper-35 .switch:checked+label .switch-x-checked {
     opacity: 1;
 }
 
@@ -503,7 +522,7 @@ body.light .checkbox-wrapper-35 label:hover .switch-x-toggletext {
     gap: 60px;
     padding: 90px 120px;
     background:
-        radial-gradient(circle at right, rgba(255,122,24,0.15), transparent 60%),
+        radial-gradient(circle at right, rgba(255, 122, 24, 0.15), transparent 60%),
         linear-gradient(180deg, var(--bg), #111);
     transition: background-color 0.3s ease;
 }
@@ -511,7 +530,7 @@ body.light .checkbox-wrapper-35 label:hover .switch-x-toggletext {
 /* Light Mode Hero Background */
 body.light .hero {
     background:
-        radial-gradient(circle at right, rgba(255,122,24,0.08), transparent 60%),
+        radial-gradient(circle at right, rgba(255, 122, 24, 0.08), transparent 60%),
         linear-gradient(180deg, var(--bg), #e8e8e8) !important;
 }
 
@@ -620,6 +639,62 @@ body.light .hero-role {
     width: 100%;
 }
 
+/* Inline About Link for Hero Text */
+.inline-about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: inherit;
+    /* Inherit font size from parent */
+    margin-left: 10px;
+    text-decoration: none;
+    /* Remove default underline just in case */
+    position: relative;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.inline-about-link .arrow {
+    display: inline-block;
+    font-size: 1.2em;
+    /* Slightly larger than text */
+    transition: transform 0.3s ease;
+}
+
+.inline-about-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Adjust position */
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Thinner underline for inline text */
+    background: var(--accent);
+    transform: scaleX(1);
+    /* Always visible as per user request? Or transition? User said "ADD AN UNDERLINE" */
+    transform-origin: left;
+    transition: transform 0.3s ease, height 0.3s ease;
+}
+
+.inline-about-link:hover {
+    color: #ff8c3a;
+    /* Slightly lighter accent */
+    text-shadow: 0 0 10px rgba(255, 122, 24, 0.4);
+}
+
+.inline-about-link:hover .arrow {
+    transform: translateX(4px);
+}
+
+.inline-about-link:hover::after {
+    height: 2px;
+    /* Thicken on hover */
+    box-shadow: 0 0 8px rgba(255, 122, 24, 0.6);
+}
+
 /* ================= 8. HERO BUTTONS ================= */
 .hero-actions {
     display: flex;
@@ -679,7 +754,7 @@ body.light .hero-role {
 }
 
 .btn.secondary:hover {
-    background: rgba(255,122,24,0.12);
+    background: rgba(255, 122, 24, 0.12);
     border-color: var(--accent);
     color: var(--accent);
     transform: translateY(-3px);
@@ -692,11 +767,11 @@ body.light .hero-role {
 
 /* Light Mode Buttons */
 body.light .btn.secondary {
-    border-color: rgba(0,0,0,0.2) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 body.light .btn.secondary:hover {
-    background: rgba(255,122,24,0.1) !important;
+    background: rgba(255, 122, 24, 0.1) !important;
 }
 
 /* ================= 9. PROFILE CARD ================= */
@@ -875,6 +950,48 @@ body.light .about-card {
     font-size: 14px;
 }
 
+
+/* ===== Typewriter effect ===== */
+.typewriter {
+    min-height: 3.2em; /* prevents layout jump */
+    white-space: normal;
+}
+
+/* Cursor */
+.typewriter::after {
+    content: "|";
+    margin-left: 4px;
+    color: var(--accent);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Hidden lines initially */
+/* ===== Typewriter effect ===== */
+.typewriter {
+    min-height: 3.2em; /* prevents layout jump */
+    white-space: normal;
+}
+
+/* Cursor */
+.typewriter::after {
+    content: "|";
+    margin-left: 4px;
+    color: var(--accent);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+
+
+
+
 /* ================= PROJECTS ================= */
 .projects-showcase {
     padding: 100px 40px 120px;
@@ -995,6 +1112,311 @@ body.light .project-btn {
 .project-btn:hover {
     background: var(--accent);
     color: #000;
+}
+
+
+/* ================= LIVE PROJECT IMAGE & OVERLAY ================= */
+.project-card-live {
+    min-height: 620px;
+}
+
+.live-project-container {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #111;
+    border: 2px solid rgba(255, 122, 24, 0.4);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.4),
+        inset 0 0 50px rgba(255, 122, 24, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.project-preview-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    z-index: 1;
+}
+
+/* Overlay for hover effect */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: linear-gradient(135deg, rgba(11, 11, 11, 0.8), rgba(25, 25, 25, 0.9));
+    padding: 40px 30px;
+    text-align: center;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
+    opacity: 0;
+}
+
+/* Hover Effects */
+.live-project-container:hover .project-overlay {
+    opacity: 1;
+}
+
+.live-project-container:hover .project-preview-video {
+    transform: scale(1.05);
+    filter: blur(4px);
+}
+
+body.light .project-overlay {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(245, 245, 245, 0.9)) !important;
+}
+
+/* Icon styling */
+.project-overlay svg {
+    width: 56px;
+    height: 56px;
+    stroke: var(--accent);
+    stroke-width: 2.5px;
+    filter: drop-shadow(0 4px 16px rgba(255, 122, 24, 0.6));
+    transform: translateY(15px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.live-project-container:hover .project-overlay svg {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* Text styling */
+.project-overlay p {
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.3px;
+    transform: translateY(15px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.live-project-container:hover .project-overlay p {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+
+/* Live Badge - Enhanced */
+.live-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(0, 255, 0, 0.6);
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #00ff00;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    z-index: 15;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.4),
+        inset 0 0 15px rgba(0, 255, 0, 0.1);
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(0, 255, 0, 0.4),
+            inset 0 0 15px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(0, 255, 0, 0.6),
+            inset 0 0 20px rgba(0, 255, 0, 0.15);
+    }
+}
+
+.live-dot {
+    width: 12px;
+    height: 12px;
+    background: #00ff00;
+    border-radius: 50%;
+    animation: dotPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.9);
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(0, 255, 0, 0.9);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.4);
+        box-shadow: 0 0 25px rgba(0, 255, 0, 1);
+    }
+}
+
+/* Hover effects */
+.live-project-container:hover {
+    border-color: rgba(255, 122, 24, 0.7);
+    box-shadow: 
+        0 12px 35px rgba(255, 122, 24, 0.35),
+        inset 0 0 60px rgba(255, 122, 24, 0.08);
+    transform: translateY(-4px);
+}
+
+.live-project-container:hover .iframe-fallback {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.99), rgba(40, 40, 40, 0.99));
+}
+
+body.light .live-project-container:hover .iframe-fallback {
+    background: linear-gradient(135deg, rgba(245, 245, 245, 0.99), rgba(255, 255, 255, 0.99)) !important;
+}
+
+.live-project-container:hover .iframe-fallback svg {
+    transform: translateY(-8px) rotate(8deg) scale(1.1);
+    filter: drop-shadow(0 6px 20px rgba(255, 122, 24, 0.8));
+}
+
+/* Light mode specific */
+body.light .live-project-container {
+    background: linear-gradient(135deg, rgba(245, 245, 245, 0.8), rgba(255, 255, 255, 0.9)) !important;
+    border: 2px solid rgba(255, 122, 24, 0.5) !important;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.12),
+        inset 0 0 50px rgba(255, 122, 24, 0.04) !important;
+}
+
+body.light .live-badge {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(0, 255, 0, 0.7) !important;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.25),
+        inset 0 0 15px rgba(0, 255, 0, 0.08) !important;
+}
+
+body.light .iframe-fallback span {
+    background: rgba(255, 122, 24, 0.08) !important;
+    border-color: rgba(255, 122, 24, 0.2) !important;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .live-project-container {
+        height: 340px;
+    }
+    
+    .project-card-live {
+        min-height: 580px;
+    }
+}
+
+@media (max-width: 900px) {
+    .live-project-container {
+        height: 300px;
+    }
+    
+    .project-card-live {
+        min-height: 540px;
+    }
+    
+    .iframe-fallback {
+        padding: 30px 20px;
+        gap: 16px;
+    }
+    
+    .iframe-fallback svg {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .iframe-fallback p {
+        font-size: 1rem;
+    }
+    
+    .iframe-fallback span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .live-project-container {
+        height: 260px;
+    }
+    
+    .project-card-live {
+        min-height: 520px;
+    }
+    
+    .live-badge {
+        top: 12px;
+        right: 12px;
+        padding: 8px 14px;
+        font-size: 11px;
+        gap: 8px;
+    }
+    
+    .live-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .iframe-fallback {
+        gap: 14px;
+        padding: 20px 16px;
+    }
+    
+    .iframe-fallback svg {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .iframe-fallback p {
+        font-size: 0.95rem;
+    }
+    
+    .iframe-fallback span {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .live-project-container {
+        height: 240px;
+    }
+    
+    .iframe-fallback svg {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .iframe-fallback p {
+        font-size: 0.9rem;
+    }
 }
 
 /* ================= TOOLS/TECH STACK ================= */
@@ -1434,7 +1856,7 @@ body.light .alert-error {
         height: 24px;
     }
 
-    .checkbox-wrapper-35 .switch:checked + label .switch-x-toggletext::before {
+    .checkbox-wrapper-35 .switch:checked+label .switch-x-toggletext::before {
         transform: translateX(40px);
     }
 
@@ -1614,5 +2036,7 @@ body.light .alert-error {
         height: 30px;
     }
 }
+
+
 
 /* ================= END OF CSS ================= */

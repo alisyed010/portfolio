@@ -1,4 +1,5 @@
 {% extends 'resume/base.html' %}
+{% load static %}
 {% block content %}
 
 <section class="tools-section">
@@ -15,45 +16,47 @@
         <!-- Backend -->
         <div class="tools-card">
             <h3>Backend</h3>
-            <div class="tools-tags">
-                <span>Python</span>
-                <span>Django</span>
-                <span>Django REST Framework</span>
-                <span>Flask</span>
+            <div class="tools-tags tools-tags-with-icons">
+                <span><img src="{% static 'images/tools-images/Python.svg' %}" alt="Python">Python</span>
+                <span><img src="{% static 'images/tools-images/Django.svg' %}" alt="Django">Django</span>
+                <span><img src="{% static 'images/tools-images/Django-REST.svg' %}" alt="Django REST Framework">Django REST Framework</span>
+                <span><img src="{% static 'images/tools-images/Flask.svg' %}" alt="Flask">Flask</span>
             </div>
         </div>
 
         <!-- Databases -->
         <div class="tools-card">
             <h3>Databases</h3>
-            <div class="tools-tags">
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>SQLite</span>
-                <span>Redis</span>
+            <div class="tools-tags tools-tags-with-icons">
+                <span><img src="{% static 'images/tools-images/PostgresSQL.svg' %}" alt="PostgreSQL">PostgreSQL</span>
+                <span><img src="{% static 'images/tools-images/MySQL.svg' %}" alt="MySQL">MySQL</span>
+                <span><img src="{% static 'images/tools-images/SQLite.svg' %}" alt="SQLite">SQLite</span>
+                <span><img src="{% static 'images/tools-images/mongodb.svg' %}" alt="MongoDB">MongoDb</span>
             </div>
         </div>
 
         <!-- DevOps -->
         <div class="tools-card">
             <h3>DevOps & Tools</h3>
-            <div class="tools-tags">
-                <span>Git & GitHub</span>
-                <span>Docker</span>
-                <span>Postman</span>
-                <span>Linux</span>
-                <span>Render</span>
+            <div class="tools-tags tools-tags-with-icons">
+                <span><img src="{% static 'images/tools-images/git.svg' %}" alt="Git">Git</span>
+                <span><img src="{% static 'images/tools-images/GitHub.svg' %}" alt="GitHub">GitHub</span>
+                <span><img src="{% static 'images/tools-images/Docker.svg' %}" alt="Docker">Docker</span>
+                <span><img src="{% static 'images/tools-images/postman.svg' %}" alt="Postman">Postman</span>
+                <span><img src="{% static 'images/tools-images/Linux.svg' %}" alt="Linux">Linux</span>
             </div>
         </div>
 
         <!-- Frontend -->
         <div class="tools-card">
             <h3>Frontend</h3>
-            <div class="tools-tags">
-                <span>HTML5</span>
-                <span>CSS3 / Tailwind</span>
-                <span>JavaScript</span>
-                <span>React</span>
+            <div class="tools-tags tools-tags-with-icons">
+                <span><img src="{% static 'images/tools-images/html5.svg' %}" alt="HTML5">HTML5</span>
+                <span><img src="{% static 'images/tools-images/css3.svg' %}" alt="CSS3">CSS3</span>
+                <span><img src="{% static 'images/tools-images/bootstrap.svg' %}" alt="Bootstrap">Bootstrap</span>
+                <span><img src="{% static 'images/tools-images/tailwindcss.svg' %}" alt="Tailwind CSS">Tailwind</span>
+                <span><img src="{% static 'images/tools-images/javascript.svg' %}" alt="JavaScript">JavaScript</span>
+                <span><img src="{% static 'images/tools-images/react.svg' %}" alt="React">React</span>
             </div>
         </div>
 

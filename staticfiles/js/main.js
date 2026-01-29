@@ -171,14 +171,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (hamburger) {
         hamburger.addEventListener("click", function() {
-            console.log("Hamburger clicked");
             mobileNav.classList.toggle("active");
         });
 
         navItems.forEach(item => {
             item.addEventListener("click", function() {
                 mobileNav.classList.remove("active");
-                console.log("Mobile nav item clicked, closing menu");
             });
         });
     }
@@ -192,57 +190,42 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // ================= THEME TOGGLE FUNCTIONALITY =================
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("=== THEME TOGGLE INITIALIZED ===");
-    
     const toggle = document.getElementById("switch");
     
     if (!toggle) {
-        console.error("ERROR: Toggle element not found!");
         return;
     }
 
-    console.log("Toggle element found:", toggle);
-
     function setTheme(lightMode) {
-        console.log(">>> SETTING THEME: Light Mode =", lightMode);
-        
         if (lightMode) {
             document.body.classList.add("light");
             toggle.checked = true;
-            console.log("✓ Added 'light' class to body");
         } else {
             document.body.classList.remove("light");
             toggle.checked = false;
-            console.log("✓ Removed 'light' class from body");
         }
     }
 
     try {
         const saved = localStorage.getItem("theme");
-        console.log("Saved theme:", saved);
         if (saved === "light") {
             setTheme(true);
         } else {
             setTheme(false);
         }
     } catch (e) {
-        console.log("localStorage unavailable, using dark mode");
         setTheme(false);
     }
 
     toggle.addEventListener("change", function() {
-        console.log("CHANGE EVENT FIRED! Checkbox.checked =", toggle.checked);
         setTheme(toggle.checked);
         
         try {
             localStorage.setItem("theme", toggle.checked ? "light" : "dark");
-            console.log("Saved theme to localStorage");
         } catch (e) {
-            console.log("Could not save to localStorage:", e);
+            // localStorage unavailable
         }
     });
-
-    console.log("=== THEME TOGGLE SETUP COMPLETE ===");
 });
 
 // ================= NAVIGATION ACTIVE STATE =================
@@ -250,14 +233,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const desktopNavItems = document.querySelectorAll(".nav-center .nav-item");
     const mobileNavItems = document.querySelectorAll(".mobile-nav .nav-item");
     const currentPath = window.location.pathname;
-
-    console.log("Current path:", currentPath);
     
     desktopNavItems.forEach(item => {
         const href = item.getAttribute("href");
         if (href === currentPath) {
             item.classList.add("active");
-            console.log("Desktop nav marked active:", href);
         }
     });
 
@@ -265,7 +245,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const href = item.getAttribute("href");
         if (href === currentPath) {
             item.classList.add("active");
-            console.log("Mobile nav marked active:", href);
         }
     });
 });

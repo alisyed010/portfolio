@@ -12,10 +12,27 @@
 
     <!-- PROJECT GRID -->
     <div class="projects-grid">
-
-        <!-- Project 1 -->
-        <div class="project-card">
-            <img src="{% static 'images/heavy-rain.png' %}" alt="Weather App">
+        
+        <!-- Project 1 - Live Weather App with Enhanced Styling -->
+        <div class="project-card project-card-live">
+            <div class="live-project-container" onclick="window.open('https://alisyed-weatherapp-django.onrender.com/', '_blank')">
+                <video autoplay loop muted playsinline class="project-preview-video">
+                    <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-overlay">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <p>Click to view live project</p>
+                </div>
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    LIVE
+                </div>
+            </div>
 
             <h3>Django Weather App</h3>
             <p>
@@ -27,18 +44,34 @@
                 <span>Django</span>
                 <span>API Integration</span>
                 <span>Tailwind</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                
             </div>
 
             <a href="https://alisyed-weatherapp-django.onrender.com/"
                target="_blank"
                class="project-btn">
-               Explore Project
+               Explore Project →
             </a>
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card">
-            <img src="{% static 'images/email.jpg' %}" alt="Email Automation">
+        <div class="project-card project-card-live">
+            <div class="live-project-container">
+                <video autoplay loop muted playsinline class="project-preview-video">
+                    <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-overlay">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <p>Click to view live project</p>
+                </div>
+            </div>
 
             <h3>Email Automation System</h3>
             <p>
@@ -52,12 +85,25 @@
                 <span>Celery</span>
             </div>
 
-            <a href="#" class="project-btn">Explore Project</a>
+            <a href="#" class="project-btn">Explore Project →</a>
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card">
-            <img src="{% static 'images/course.jpg' %}" alt="Course System">
+        <div class="project-card project-card-live">
+            <div class="live-project-container">
+                <video autoplay loop muted playsinline class="project-preview-video">
+                    <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="project-overlay">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    <p>Click to view live project</p>
+                </div>
+            </div>
 
             <h3>Course Enrollment System</h3>
             <p>
@@ -71,7 +117,7 @@
                 <span>DRF</span>
             </div>
 
-            <a href="#" class="project-btn">Explore Project</a>
+            <a href="#" class="project-btn">Explore Project →</a>
         </div>
 
     </div>

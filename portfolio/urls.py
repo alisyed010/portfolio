@@ -26,6 +26,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from resume import views as resume_views
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,3 +41,6 @@ urlpatterns = [
     path('contact/', resume_views.contact, name='contact'),
     path('tools/', resume_views.tools, name='tools'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()
