@@ -7,7 +7,7 @@
     <!-- HEADER -->
     <div class="projects-header">
         <h1>Featured Projects</h1>
-        <p>Showcasing high-impact backend and full-stack solutions.</p>
+        <p>Showcasing high-impact backend and full-stack Projects.</p>
     </div>
 
     <!-- PROJECT GRID -->
@@ -15,111 +15,296 @@
         
         <!-- Project 1 - Live Weather App with Enhanced Styling -->
         <div class="project-card project-card-live">
-            <div class="live-project-container" onclick="window.open('https://alisyed-weatherapp-django.onrender.com/', '_blank')">
-                <video autoplay loop muted playsinline class="project-preview-video">
-                    <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="project-overlay">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                    <p>Click to view live project</p>
-                </div>
-                <div class="live-badge">
-                    <span class="live-dot"></span>
-                    LIVE
+            <!-- Flip Card Container -->
+            <div class="flip-card">
+                <div class="flip-card-inner" id="flip-card-1">
+                    
+                    <!-- FRONT SIDE -->
+                    <div class="flip-card-front">
+                        <div class="live-project-container" onclick="window.open('https://alisyed-weatherapp-django.onrender.com/', '_blank')">
+                            <video autoplay loop muted playsinline class="project-preview-video">
+                                <source src="{% static 'videos/video1.mp4' %}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="project-overlay">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                                <p>Click to view live project</p>
+                            </div>
+                            <div class="live-badge">
+                                <span class="live-dot"></span>
+                                LIVE
+                            </div>
+                        </div>
+
+                        <h3>Django Weather App</h3>
+                        <p>
+                            A real-time weather application built using Django and OpenWeather API.
+                            Features dynamic search, unit conversion, and live meteorological data.
+                        </p>           
+
+                        <!-- Learn More Button & Code Link Container -->
+                        <div class="button-row">
+                            <button class="learn-more" onclick="flipCard('flip-card-1', event)">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">Learn More</span>
+                            </button>
+
+                            <div 
+                                
+                                class="code-link">
+                                <a 
+                                href="https://github.com/alisyed010/django-weather-app"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="code-svg">
+                                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                                </svg>
+                            </a>
+                                <a class="code-text" href="https://github.com/alisyed010/django-weather-app" target="_blank">Code</a>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span>Django</span>
+                            <span>API Integration</span>
+                            <span>Tailwind</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                        </div>
+
+                        <a href="https://alisyed-weatherapp-django.onrender.com/"
+                           target="_blank"
+                           class="project-btn">
+                           Explore Project →
+                        </a>
+                    </div>
+
+                    <!-- BACK SIDE -->
+                    <div class="flip-card-back">
+                        <div class="back-content">
+                            <h3>Project Details</h3>
+                            <div class="details-text">
+                                <p>This comprehensive weather application integrates real-time data from the OpenWeather API, providing users with accurate and up-to-date meteorological information.</p>
+                                
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Real-time weather data fetching</li>
+                                    <li>Temperature unit conversion (Celsius/Fahrenheit)</li>
+                                    <li>Dynamic city search functionality</li>
+                                    <li>Responsive mobile-first design</li>
+                                    <li>Clean and intuitive user interface</li>
+                                </ul>
+
+                                <h4>Technologies Used:</h4>
+                                <p>Django Framework, OpenWeather API, Tailwind CSS, JavaScript, HTML5</p>
+                            </div>
+
+                            <button class="back-button" onclick="flipCard('flip-card-1', event)">
+                                <span class="back-arrow">←</span> Go Back
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <h3>Django Weather App</h3>
-            <p>
-                A real-time weather application built using Django and OpenWeather API.
-                Features dynamic search, unit conversion, and live meteorological data.
-            </p>
-
-            <div class="project-tags">
-                <span>Django</span>
-                <span>API Integration</span>
-                <span>Tailwind</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                
-            </div>
-
-            <a href="https://alisyed-weatherapp-django.onrender.com/"
-               target="_blank"
-               class="project-btn">
-               Explore Project →
-            </a>
         </div>
 
         <!-- Project 2 -->
         <div class="project-card project-card-live">
-            <div class="live-project-container">
-                <video autoplay loop muted playsinline class="project-preview-video">
-                    <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="project-overlay">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                    <p>Click to view live project</p>
+            <!-- Flip Card Container -->
+            <div class="flip-card">
+                <div class="flip-card-inner" id="flip-card-2">
+                    
+                    <!-- FRONT SIDE -->
+                    <div class="flip-card-front">
+                        <div class="live-project-container">
+                            <video autoplay loop muted playsinline class="project-preview-video">
+                                <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="project-overlay">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                                <p>Click to view live project</p>
+                            </div>
+                        </div>
+
+                        <h3>Email Automation System</h3>
+                        <p>
+                            Advanced SMTP/IMAP automation engine for scheduling, monitoring,
+                            and auto-replying. Built with security and efficiency as core pillars.
+                        </p>
+
+                        <!-- Learn More Button & Code Link Container -->
+                        <div class="button-row">
+                            <button class="learn-more" onclick="flipCard('flip-card-2', event)">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">Learn More</span>
+                            </button>
+
+                            <a class="code-link" href="https://github.com/alisyed010/django-weather-app" target="_blank" rel="noopener noreferrer">
+                            <div class="code-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="code-svg">
+                                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                                </svg>
+                                <a class="code-text" href="https://github.com/alisyed010" target="_blank">Code</a>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>SMTP</span>
+                            <span>Celery</span>
+                        </div>
+
+                        <a href="#" class="project-btn">Explore Project →</a>
+                    </div>
+
+                    <!-- BACK SIDE -->
+                    <div class="flip-card-back">
+                        <div class="back-content">
+                            <h3>Project Details</h3>
+                            <div class="details-text">
+                                <p>A sophisticated email automation system designed to streamline communication workflows. This system leverages SMTP and IMAP protocols to handle email operations efficiently and securely.</p>
+                                
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Automated email scheduling and sending</li>
+                                    <li>Real-time email monitoring and tracking</li>
+                                    <li>Intelligent auto-reply functionality</li>
+                                    <li>Celery-based task queue management</li>
+                                    <li>Enterprise-grade security implementation</li>
+                                </ul>
+
+                                <h4>Technologies Used:</h4>
+                                <p>Python, SMTP/IMAP Protocols, Celery, Redis, PostgreSQL</p>
+                            </div>
+
+                            <button class="back-button" onclick="flipCard('flip-card-2', event)">
+                                <span class="back-arrow">←</span> Go Back
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <h3>Email Automation System</h3>
-            <p>
-                Advanced SMTP/IMAP automation engine for scheduling, monitoring,
-                and auto-replying. Built with security and efficiency as core pillars.
-            </p>
-
-            <div class="project-tags">
-                <span>Python</span>
-                <span>SMTP</span>
-                <span>Celery</span>
-            </div>
-
-            <a href="#" class="project-btn">Explore Project →</a>
         </div>
 
         <!-- Project 3 -->
         <div class="project-card project-card-live">
-            <div class="live-project-container">
-                <video autoplay loop muted playsinline class="project-preview-video">
-                    <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="project-overlay">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                    <p>Click to view live project</p>
+            <!-- Flip Card Container -->
+            <div class="flip-card">
+                <div class="flip-card-inner" id="flip-card-3">
+                    
+                    <!-- FRONT SIDE -->
+                    <div class="flip-card-front">
+                        <div class="live-project-container">
+                            <video autoplay loop muted playsinline class="project-preview-video">
+                                <source src="{% static 'videos/not-available.mp4' %}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="project-overlay">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                                </svg>
+                                <p>Click to view live project</p>
+                            </div>
+                        </div>
+
+                        <h3>Course Enrollment System</h3>
+                        <p>
+                            Full-scale educational platform handling enrollment, course
+                            management, and admin dashboards with MySQL backend.
+                        </p>
+
+                        <!-- Learn More Button & Code Link Container -->
+                        <div class="button-row">
+                            <button class="learn-more" onclick="flipCard('flip-card-3', event)">
+                                <span class="circle" aria-hidden="true">
+                                    <span class="icon arrow"></span>
+                                </span>
+                                <span class="button-text">Learn More</span>
+                            </button>
+
+                             <a class="code-link" href="https://github.com/alisyed010/django-weather-app" target="_blank" rel="noopener noreferrer">
+                                <a 
+                                href="https://github.com/alisyed010/django-weather-app"
+                                target="_blank"
+                                rel="noopener noreferrer">
+
+                            <div class="code-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="code-svg">
+                                    <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                                        
+
+                                    </path>
+                                </svg>
+                                <a class="code-text" href="https://github.com/alisyed010" target="_blank">Code</a>
+                            </div>
+                        </div>
+
+                        <div class="project-tags">
+                            <span>Django</span>
+                            <span>MySQL</span>
+                            <span>DRF</span>
+                        </div>
+
+                        <a href="#" class="project-btn">Explore Project →</a>
+                    </div>
+
+                    <!-- BACK SIDE -->
+                    <div class="flip-card-back">
+                        <div class="back-content">
+                            <h3>Project Details</h3>
+                            <div class="details-text">
+                                <p>A comprehensive educational platform that streamlines the entire course enrollment and management process. Built with Django and MySQL for robust performance.</p>
+                                
+                                <h4>Key Features:</h4>
+                                <ul>
+                                    <li>Student enrollment and registration system</li>
+                                    <li>Course management and scheduling</li>
+                                    <li>Admin dashboard for oversight and control</li>
+                                    <li>RESTful API using Django REST Framework</li>
+                                    <li>Scalable MySQL database architecture</li>
+                                </ul>
+
+                                <h4>Technologies Used:</h4>
+                                <p>Django, MySQL, Django REST Framework, JWT Authentication, Bootstrap</p>
+                            </div>
+
+                            <button class="back-button" onclick="flipCard('flip-card-3', event)">
+                                <span class="back-arrow">←</span> Go Back
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
-            <h3>Course Enrollment System</h3>
-            <p>
-                Full-scale educational platform handling enrollment, course
-                management, and admin dashboards with MySQL backend.
-            </p>
-
-            <div class="project-tags">
-                <span>Django</span>
-                <span>MySQL</span>
-                <span>DRF</span>
-            </div>
-
-            <a href="#" class="project-btn">Explore Project →</a>
         </div>
 
     </div>
 </section>
+
+<script>
+function flipCard(cardId, event) {
+    event.stopPropagation(); // Prevent event bubbling
+    const card = document.getElementById(cardId);
+    card.classList.toggle('flipped');
+}
+</script>
+
 {% endblock %}
