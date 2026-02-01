@@ -2006,7 +2006,8 @@ body.light .tools-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #eaeaea;
-    transition: 0.25s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 body.light .tools-tags span {
@@ -2015,11 +2016,18 @@ body.light .tools-tags span {
     color: #333333 !important;
 }
 
+/* Hover effect - change background color of the box */
 .tools-tags span:hover {
-    background: rgba(255, 122, 24, 0.15);
-    border-color: rgba(255, 122, 24, 0.45);
-    color: var(--accent);
+    background: rgba(255, 122, 24, 0.25);
+    border-color: rgba(255, 122, 24, 0.6);
+    color: #ffffff;
     transform: translateY(-3px);
+}
+
+body.light .tools-tags span:hover {
+    background: rgba(255, 122, 24, 0.2) !important;
+    border-color: rgba(255, 122, 24, 0.5) !important;
+    color: #ff7a18 !important;
 }
 
 .tools-tags-with-icons span {
@@ -2032,6 +2040,7 @@ body.light .tools-tags span {
     width: 20px;
     height: 20px;
     object-fit: contain;
+    /* Icons keep their original colors - NO FILTER */
 }
 
 /* ================= CONTACT SECTION ================= */
