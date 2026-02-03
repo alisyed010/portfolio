@@ -647,13 +647,12 @@ body.light .hero-role {
     color: var(--accent);
     font-weight: 700;
     font-size: inherit;
-    /* Inherit font size from parent */
     margin-left: 10px;
-    text-decoration: none;
-    /* Remove default underline just in case */
+    text-decoration: underline;  /* Add this line */
+    text-decoration-thickness: 2px;  /* Add this line */
+    text-underline-offset: 3px;  /* Add this line - adjust between 2px-5px */
     position: relative;
     transition: all 0.3s ease;
-    vertical-align: middle;
 }
 
 .inline-about-link .arrow {
@@ -663,21 +662,6 @@ body.light .hero-role {
     transition: transform 0.3s ease;
 }
 
-.inline-about-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    /* Adjust position */
-    left: 0;
-    width: 100%;
-    height: 1px;
-    /* Thinner underline for inline text */
-    background: var(--accent);
-    transform: scaleX(1);
-    /* Always visible as per user request? Or transition? User said "ADD AN UNDERLINE" */
-    transform-origin: left;
-    transition: transform 0.3s ease, height 0.3s ease;
-}
 
 .inline-about-link:hover {
     color: #ff8c3a;
@@ -1035,7 +1019,7 @@ body.light .projects-showcase {
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 22px;
-    padding: 22px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     transition: 0.35s ease;
@@ -1094,15 +1078,32 @@ body.light .project-card:hover {
     border: 1px solid rgba(255, 122, 24, 0.3);
 }
 
+/* ===============================================
+   FIX FOR EXPLORE PROJECT BUTTON ALIGNMENT
+   REPLACE THIS SECTION IN YOUR style.css
+   =============================================== */
+
 .project-btn {
+    position: relative;
     margin-top: auto;
-    padding: 12px;
+    margin-bottom: 0; /* Add this */
+    padding: 14px 20px; /* Changed from 18px 18px for better proportion */
     text-align: center;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.06);
     color: var(--text);
     font-weight: 600;
-    transition: 0.3s ease;
+    font-size: 0.95rem; /* Add consistent font size */
+    line-height: 1.4; /* Add this for vertical centering */
+    display: flex; /* Add this */
+    align-items: center; /* Add this */
+    justify-content: center; /* Add this */
+    transition:
+        transform 0.35s cubic-bezier(.4,0,.2,1),
+        box-shadow 0.35s ease,
+        background 0.35s ease,
+        color 0.35s ease;
+    overflow: hidden;
 }
 
 body.light .project-btn {
@@ -1112,8 +1113,43 @@ body.light .project-btn {
 .project-btn:hover {
     background: var(--accent);
     color: #000;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 10px 30px rgba(255, 122, 24, 0.35),
+        inset 0 0 0 1px rgba(255,255,255,0.2);
 }
 
+/* Ensure consistent spacing in flip card front */
+.flip-card-front {
+    transform: rotateY(0deg);
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Remove any automatic gaps */
+}
+
+/* Fix spacing for all elements in front card */
+.flip-card-front h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.flip-card-front > p {
+    margin-bottom: 18px;
+}
+
+.flip-card-front .project-tags {
+    margin-bottom: 18px; /* Ensure consistent spacing */
+    margin-top: 0;
+}
+
+.flip-card-front button.learn-more {
+    margin: 15px 0; /* Consistent spacing */
+}
+
+.flip-card-front .project-btn {
+    margin-top: auto; /* Push to bottom */
+    margin-bottom: 0; /* No bottom margin */
+}
 
 /* ================= LIVE PROJECT IMAGE & OVERLAY ================= */
 .project-card-live {
@@ -1123,6 +1159,8 @@ body.light .project-btn {
 .live-project-container {
     position: relative;
     width: 100%;
+    aspect-ratio: 16 / 9;   /* 🔥 KEY FIX */
+    max-height: 250px; /* Adjusted max-height for better fit */
     height: 380px;
     border-radius: 18px;
     overflow: hidden;
@@ -1419,6 +1457,470 @@ body.light .iframe-fallback span {
     }
 }
 
+
+/* ================= LEARN MORE ================= */
+/* Optimized Smaller Learn More Button */
+button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+}
+
+button.learn-more {
+ width: 9rem; /* Reduced from 12rem */
+ height: auto;
+}
+
+button.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 2.2rem; /* Reduced from 3rem */
+ height: 2.2rem; /* Reduced from 3rem */
+ background: #ff7a18;
+ border-radius: 1.1rem; /* Adjusted to match new size */
+}
+
+button.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.45rem; /* Adjusted from 0.625rem */
+ width: 0.85rem; /* Reduced from 1.125rem */
+ height: 0.1rem; /* Slightly reduced from 0.125rem */
+ background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.22rem; /* Adjusted from -0.29rem */
+ right: 0.05rem; /* Adjusted from 0.0625rem */
+ width: 0.5rem; /* Reduced from 0.625rem */
+ height: 0.5rem; /* Reduced from 0.625rem */
+ border-top: 0.1rem solid #fff; /* Slightly reduced from 0.125rem */
+ border-right: 0.1rem solid #fff; /* Slightly reduced from 0.125rem */
+ transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ padding: 0.5rem 0; /* Reduced from 0.75rem */
+ margin: 0 0 0 1.4rem; /* Adjusted from 1.85rem */
+ color: #282936;
+ font-weight: 700;
+ line-height: 1.2; /* Adjusted from 1.6 */
+ text-align: center;
+ text-transform: uppercase;
+ font-size: 0.7rem; /* Added smaller font size */
+}
+
+button:hover .circle {
+ width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(0.75rem, 0); /* Adjusted from 1rem */
+}
+
+button:hover .button-text {
+ color: #fff;
+}
+
+/* Light mode adjustments */
+body.light button.learn-more .button-text {
+ color: #282936;
+}
+
+body.light button:hover .button-text {
+ color: #fff;
+}
+
+
+/* ===============================================
+   CODE BUTTON NEXT TO LEARN MORE - STYLES
+   ADD THIS TO YOUR EXISTING style.css
+   =============================================== */
+
+/* Container for Learn More button and Code link */
+.button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+/* Code Link Container */
+.code-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* GitHub SVG Icon */
+.code-svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+/* Code Text Link */
+.code-text {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.code-link:hover .code-svg {
+    fill: var(--accent);
+    transform: translateY(-2px);
+}
+
+.code-link:hover .code-text {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Light Mode */
+body.light .code-svg {
+    fill: var(--text-muted) !important;
+}
+
+body.light .code-link:hover .code-svg {
+    fill: var(--accent) !important;
+}
+
+body.light .code-text {
+    color: var(--text-muted) !important;
+}
+
+body.light .code-link:hover .code-text {
+    color: var(--accent) !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .button-row {
+        gap: 12px;
+        margin: 12px 0;
+    }
+    
+    .code-svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .code-text {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .button-row {
+        gap: 10px;
+    }
+    
+    .code-svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .code-text {
+        font-size: 0.8rem;
+    }
+}
+
+
+
+/* ===============================================
+   FLIPPABLE CARD STYLES - OPTIMIZED VERSION
+   ADD THIS TO YOUR EXISTING style.css
+   =============================================== */
+
+/* Flip Card Container */
+.flip-card {
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 22px;
+}
+
+.flip-card-front {
+    transform: rotateY(0deg);
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-card-back {
+    background: rgba(255, 122, 24, 0.08);
+    border: 1px solid rgba(255, 122, 24, 0.3);
+    transform: rotateY(180deg);
+    padding: 25px 25px 80px 25px; /* Extra bottom padding for fixed button */
+    overflow-y: auto;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+body.light .flip-card-back {
+    background: rgba(255, 122, 24, 0.06) !important;
+    border: 1px solid rgba(255, 122, 24, 0.25) !important;
+}
+
+/* Back Content Styling */
+.back-content {
+    width: 100%;
+    max-width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.back-content h3 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.back-content h4 {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+.details-text {
+    color: var(--text-muted);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.details-text p {
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+}
+
+.details-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 16px;
+}
+
+.details-text ul li {
+    padding: 6px 0 6px 24px;
+    position: relative;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.details-text ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Fixed Back Button at Bottom */
+.back-button {
+    position: absolute;
+    bottom: 20px;
+    left: 25px;
+    right: 25px;
+    padding: 12px 20px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 10;
+}
+
+.back-button:hover {
+    background: #ff8c3a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 122, 24, 0.4);
+}
+
+.back-arrow {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover .back-arrow {
+    transform: translateX(-4px);
+}
+
+/* Ensure project card height accommodates all content */
+.project-card-live {
+    min-height: 700px; /* Increased to prevent cutting */
+}
+
+/* Ensure proper spacing for learn more button */
+.flip-card-front button.learn-more {
+    margin: 18px 0;
+}
+
+/* Prevent scrollbar from showing unnecessarily */
+.flip-card-back {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) rgba(255, 255, 255, 0.05);
+}
+
+.flip-card-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+.flip-card-back::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.flip-card-back::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+.flip-card-back::-webkit-scrollbar-thumb:hover {
+    background: #ff8c3a;
+}
+
+/* Fix project button positioning to prevent cutoff */
+.flip-card-front .project-btn {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .project-card-live {
+        min-height: 650px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flip-card-back {
+        padding: 20px 20px 75px 20px;
+    }
+    
+    .back-button {
+        bottom: 18px;
+        left: 20px;
+        right: 20px;
+        padding: 11px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .back-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .back-content h4 {
+        font-size: 0.95rem;
+    }
+    
+    .details-text p,
+    .details-text ul li {
+        font-size: 0.85rem;
+    }
+    
+    .project-card-live {
+        min-height: 620px;
+    }
+}
+
+@media (max-width: 600px) {
+    .flip-card-back {
+        padding: 18px 18px 70px 18px;
+    }
+    
+    .back-button {
+        bottom: 16px;
+        left: 18px;
+        right: 18px;
+        padding: 10px 16px;
+    }
+    
+    .back-content h3 {
+        font-size: 1.15rem;
+        margin-bottom: 14px;
+    }
+    
+    .project-card-live {
+        min-height: 580px;
+    }
+}
+
+@media (max-width: 400px) {
+    .project-card-live {
+        min-height: 560px;
+    }
+    
+    .back-content h3 {
+        font-size: 1.1rem;
+    }
+}
+
 /* ================= TOOLS/TECH STACK ================= */
 .tools-section {
     padding: 110px 50px;
@@ -1504,7 +2006,8 @@ body.light .tools-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #eaeaea;
-    transition: 0.25s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 body.light .tools-tags span {
@@ -1513,11 +2016,31 @@ body.light .tools-tags span {
     color: #333333 !important;
 }
 
+/* Hover effect - change background color of the box */
 .tools-tags span:hover {
-    background: rgba(255, 122, 24, 0.15);
-    border-color: rgba(255, 122, 24, 0.45);
-    color: var(--accent);
+    background: rgba(255, 122, 24, 0.25);
+    border-color: rgba(255, 122, 24, 0.6);
+    color: #ffffff;
     transform: translateY(-3px);
+}
+
+body.light .tools-tags span:hover {
+    background: rgba(255, 122, 24, 0.2) !important;
+    border-color: rgba(255, 122, 24, 0.5) !important;
+    color: #ff7a18 !important;
+}
+
+.tools-tags-with-icons span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tools-tags-with-icons img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    /* Icons keep their original colors - NO FILTER */
 }
 
 /* ================= CONTACT SECTION ================= */
