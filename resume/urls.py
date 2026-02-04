@@ -23,3 +23,11 @@ urlpatterns = [
     path('tools/', views.tools, name='tools'),
     path('contact/', views.contact, name='contact'),
 ]
+
+from django.contrib import admin
+from django.urls import path, include # Make sure 'include' is imported
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('resume.urls')), # This connects the home page to your resume app
+]
